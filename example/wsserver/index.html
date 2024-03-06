@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Test WebSocket</title>
+</head>
+<body>
+    <button onclick="send()">Send</button>
+</body>
+<script>
+var ws = new WebSocket("ws://localhost:7008/ws");
+
+ws.onerror = function(evt) { console.log(ent); };
+
+function send() {
+    var s = "test"
+    ws.send(s)
+}
+
+ws.onopen = function() {
+    console.log("open");
+    ws.binaryType = 'arraybuffer';
+}
+
+ws.onmessage = function(e) {
+    console.log(e.data)
+}
+
+ws.onclose = function(e) {
+    console.log('close')
+}
+</script>
+</html>
